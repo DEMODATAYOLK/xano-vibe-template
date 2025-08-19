@@ -50,7 +50,7 @@ VITE_XANO_API_URL=https://your-workspace.xano.com/api:version
 VITE_XANO_REALTIME_HASH=your-realtime-connection-hash
 
 # Xano Project Settings
-VITE_XANO_REALTIME_ENABLED=true
+VITE_XANO_REALTIME_ENABLED=false
 ```
 
 ### 3. Xano Backend Setup
@@ -102,7 +102,7 @@ The project uses `@xano/js-sdk` for backend communication. Configuration is hand
 
 ```typescript
 // Enable/disable realtime features
-VITE_XANO_REALTIME_ENABLED=true  // or false
+VITE_XANO_REALTIME_ENABLED=false  // or true
 
 // Your Xano workspace API URL
 VITE_XANO_API_URL=https://your-workspace.xano.com/api:version
