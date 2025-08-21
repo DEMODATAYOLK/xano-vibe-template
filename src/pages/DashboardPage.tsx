@@ -67,7 +67,6 @@ export const DashboardPage: React.FC = () => {
           console.log(`Connecting to user-specific channel: ${channelName}`);
           
           const subscription = await realtimeService.subscribe(channelName, (data) => {
-            console.log('Realtime data received:', data);
             
             // Create a unique message ID for deduplication
             const messageId = `${data.action}-${JSON.stringify(data.payload)}-${Date.now()}`;
