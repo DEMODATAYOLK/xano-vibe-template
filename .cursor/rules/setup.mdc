@@ -77,7 +77,7 @@ Prerequisite
 
 3.  **Set Up Environment File**:
     * **Goal**: Create a local environment configuration file.
-    * **Action**: Check for a `.env.example`. If it exists, copy it to a new `.env` file.
+    * **Action**: Check for a `.env.example`. If it exists, copy it to a new `.env` file. If `.env` existed , you should ignore this step.
     * **Command**:
         ```bash
         cp .env.example .env
