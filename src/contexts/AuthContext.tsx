@@ -51,9 +51,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setIsLoading(true);
     try {
       const response = await authService.login({ email, password });
-      console.log('Login response:', response); // Debug log
       const userData = await authService.me();
-      console.log('User data:', userData); // Debug log
       setUser(userData);
     } catch (error) {
       console.error('Login failed:', error);

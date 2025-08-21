@@ -92,11 +92,9 @@ export const authService = {
     try {
       const response = await xano.post('/auth/login', credentials);
       const responseBody = response.getBody();
-      console.log('Login response body:', responseBody);
       
       // Extract token - Xano may return it as 'token' or 'authToken'
       const token = responseBody.authToken || responseBody.token;
-      console.log('Extracted token:', token);
       
       if (!token) {
         console.error('No token found in response. Response keys:', Object.keys(responseBody));
@@ -129,11 +127,9 @@ export const authService = {
     try {
       const response = await xano.post('/auth/signup', credentials);
       const responseBody = response.getBody();
-      console.log('Register response body:', responseBody);
       
       // Extract token - Xano may return it as 'token' or 'authToken'
       const token = responseBody.authToken || responseBody.token;
-      console.log('Extracted token:', token);
       
       if (!token) {
         console.error('No token found in response. Response keys:', Object.keys(responseBody));
@@ -242,7 +238,6 @@ export const realtimeService = {
   createChannelWithRetry: async (client: any, channelName: string, maxRetries = 5): Promise<any> => {
     for (let attempt = 0; attempt < maxRetries; attempt++) {
       try {
-        console.log(`Creating channel attempt ${attempt + 1}/${maxRetries}`);
         const channel = client.channel(channelName);
         console.log('Channel created successfully');
         return channel;
