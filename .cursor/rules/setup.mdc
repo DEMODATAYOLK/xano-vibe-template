@@ -37,6 +37,9 @@ You will proceed through the following phases automatically, adhering to the **C
 Prerequisite
 - Node.js (`https://nodejs.org/en/download`)
 
+## Important note 
+for **Windows** we need to use cmd terminal as a command not Powershell. 
+
 ### Phase 1: Environment Verification
 
 1.  **Check Node.js, NPM, NVM**:
