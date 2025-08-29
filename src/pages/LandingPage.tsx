@@ -30,7 +30,7 @@ export const LandingPage: React.FC = () => {
             {/* Main Heading */}
             <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-8 leading-[1.1] drop-shadow-sm">
               <span className="block bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent py-2">
-                Empowering your idea
+                Empowering your idea !
               </span>
             </h1>
             
