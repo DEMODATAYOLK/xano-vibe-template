@@ -38,7 +38,7 @@ Prerequisite
 - Node.js (`https://nodejs.org/en/download`)
 
 ## Important note 
-for **Windows** we need to use cmd terminal as a command not Powershell. 
+for **Windows** we need to use cmd terminal (command prompt terminal) not Powershell. 
 
 ### Phase 1: Environment Verification
 
