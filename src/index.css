@@ -64,11 +64,53 @@
     @apply border-border;
   }
   body {
+    font-family: "IBM Plex Sans Thai", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
     @apply bg-background text-foreground;
   }
 }
 
 @layer utilities {
+  .ibm-plex-sans-thai-thin {
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+
+  .ibm-plex-sans-thai-extralight {
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
+
+  .ibm-plex-sans-thai-light {
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  .ibm-plex-sans-thai-regular {
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .ibm-plex-sans-thai-medium {
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .ibm-plex-sans-thai-semibold {
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .ibm-plex-sans-thai-bold {
+    font-family: "IBM Plex Sans Thai", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
   .animate-fade-in {
     animation: fadeInUp 0.6s ease-out both;
   }
