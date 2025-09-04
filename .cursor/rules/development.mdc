@@ -57,3 +57,28 @@ You are an expert full stack developer focused on creating production-ready, bea
 - **Framework**: Tailwind CSS
 - **Application**: Ensure correct class usage
 - **Responsive**: Mobile-first design approach
+
+## 🧪 Testing & Quality Assurance
+
+### Test File Management
+
+- **Create Test Files**: Always create test files when implementing new functionality
+- **Preserve Test Files**: NEVER delete test files - they serve as regression tests
+- **Test File Naming**: Use descriptive names like `test-[feature].js` or `test-[feature].html`
+- **Test File Location**: Place test files in project root for easy access
+- **Documentation**: Include clear comments explaining what each test validates
+
+### Testing Standards
+
+- **API Testing**: Create test files for API endpoints and data fetching
+- **Animation Testing**: Create visual test files for CSS animations and effects
+- **Function Testing**: Test utility functions and algorithms independently
+- **Regression Testing**: Keep test files to verify functionality after changes
+- **Manual Testing**: Include instructions for manual testing when needed
+
+### Test File Examples
+
+- `test-api.js` - API endpoint testing
+- `test-animation.html` - Visual animation testing
+- `test-shuffle.js` - Algorithm testing
+- `test-component.html` - Component behavior testing
