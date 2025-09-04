@@ -14,6 +14,7 @@ export const CardSection: React.FC<CardSectionProps> = ({ className = '' }) => {
   const [shuffledCards, setShuffledCards] = useState<TarotCard[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isShuffling, setIsShuffling] = useState(false);
 
   // Shuffle function using Fisher-Yates algorithm
   const shuffleCards = (cards: TarotCard[]): TarotCard[] => {
@@ -25,12 +26,22 @@ export const CardSection: React.FC<CardSectionProps> = ({ className = '' }) => {
     return shuffled;
   };
 
-  // Handle shuffle button click
-  const handleShuffle = () => {
-    if (tarotCards.length > 0) {
+  // Handle shuffle button click with animation
+  const handleShuffle = async () => {
+    if (tarotCards.length > 0 && !isShuffling) {
+      setIsShuffling(true);
+      setFlippedCard(null); // Reset any flipped cards
+      
+      // Add a small delay to show the animation
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
       const shuffled = shuffleCards(tarotCards);
       setShuffledCards(shuffled);
-      setFlippedCard(null); // Reset any flipped cards
+      
+      // Wait for animation to complete before allowing interaction
+      setTimeout(() => {
+        setIsShuffling(false);
+      }, 1000);
     }
   };
 
@@ -78,12 +89,13 @@ export const CardSection: React.FC<CardSectionProps> = ({ className = '' }) => {
       cards.push(
         <div
           key={cardId}
-          className={`card-container ${isFlipped ? 'flipped' : ''}`}
+          className={`card-container ${isFlipped ? 'flipped' : ''} ${isShuffling ? 'shuffling' : ''}`}
           style={{
             left: `${i * 4}%`,
             zIndex: isFlipped ? 1000 : i + 1,
+            animationDelay: isShuffling ? `${Math.random() * 0.3}s` : '0s',
           }}
-          onClick={() => handleCardClick(cardId)}
+          onClick={() => !isShuffling && handleCardClick(cardId)}
         >
           <div className="card-inner">
             {/* Front side of card */}
@@ -150,7 +162,7 @@ export const CardSection: React.FC<CardSectionProps> = ({ className = '' }) => {
   }
 
   return (
-    <div className={`card-section ${className}`}>
+    <div className={`card-section ${className} ${isShuffling ? 'shuffling' : ''}`}>
       <div className="text-center mb-8">
         <h3 className="text-2xl font-bold mb-2">Interactive Card Collection</h3>
         <p className="text-muted-foreground mb-4">
@@ -158,11 +170,12 @@ export const CardSection: React.FC<CardSectionProps> = ({ className = '' }) => {
         </p>
         <Button 
           onClick={handleShuffle}
+          disabled={isShuffling || loading}
           variant="outline"
-          className="inline-flex items-center gap-2 hover:bg-primary hover:text-primary-foreground transition-colors"
+          className="inline-flex items-center gap-2 hover:bg-primary hover:text-primary-foreground transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <Shuffle className="h-4 w-4" />
-          Shuffle Cards
+          <Shuffle className={`h-4 w-4 ${isShuffling ? 'animate-spin' : ''}`} />
+          {isShuffling ? 'Shuffling...' : 'Shuffle Cards'}
         </Button>
       </div>
       
