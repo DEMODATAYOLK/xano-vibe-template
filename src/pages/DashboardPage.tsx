@@ -3,9 +3,10 @@ import toast from 'react-hot-toast';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { CardSection } from '@/components/CardSection';
 import { useAuth } from '@/contexts/AuthContext';
-import { realtimeService, xanoConfig, authService } from '@/lib/xano';
-import { LogOut, Wifi, WifiOff, User, Activity, Database, Settings, Menu, X } from 'lucide-react';
+import { realtimeService, authService } from '@/lib/xano';
+import { LogOut, WifiOff, User, Activity, Database, Menu, X } from 'lucide-react';
 
 export const DashboardPage: React.FC = () => {
   const { user, logout, isLoading } = useAuth();
@@ -69,7 +70,6 @@ export const DashboardPage: React.FC = () => {
           const subscription = await realtimeService.subscribe(channelName, (data) => {
             
             // Create a unique message ID for deduplication
-            const messageId = `${data.action}-${JSON.stringify(data.payload)}-${Date.now()}`;
             const roughId = `${data.action}-${JSON.stringify(data.payload)}`;
             
             // Check if we've already processed this message recently
@@ -82,7 +82,9 @@ export const DashboardPage: React.FC = () => {
             processedMessagesRef.current.add(roughId);
             if (processedMessagesRef.current.size > 50) {
               const firstItem = processedMessagesRef.current.values().next().value;
-              processedMessagesRef.current.delete(firstItem);
+              if (firstItem) {
+                processedMessagesRef.current.delete(firstItem);
+              }
             }
             
             // Update the UI data
@@ -274,93 +276,13 @@ export const DashboardPage: React.FC = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 py-12">
-        {/* Welcome Section */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Welcome to Xano Boilerplate</h2>
-          <p className="text-lg text-muted-foreground mb-2">This is made by Natt</p>
-          <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-            A modern React TypeScript starter with Xano backend integration, authentication, and real-time capabilities.
-          </p>
+      <main className="min-h-[calc(100vh-80px)] flex items-center justify-center px-6 py-12">
+
+        {/* Card Section */}
+        <div className="w-full">
+          <CardSection />
         </div>
 
-        {/* Realtime Status Card */}
-        <div className="max-w-2xl mx-auto">
-          <Card>
-            <CardHeader>
-              <div className="flex items-center justify-between">
-                <div>
-                  <CardTitle className="flex items-center space-x-2">
-                    <Activity className="h-5 w-5" />
-                    <span>Realtime Status</span>
-                  </CardTitle>
-                  <CardDescription className="mt-2">
-                    {!realtimeService.isEnabled() 
-                      ? 'This is not a realtime project. If you need realtime features, please set up in your .env file.'
-                      : user 
-                        ? `Connected to channel: dashboard/${user.realtimeid || user.id}`
-                        : 'Waiting for user authentication...'
-                    }
-                  </CardDescription>
-                </div>
-                <div className={`h-3 w-3 rounded-full ${
-                  !realtimeService.isEnabled() 
-                    ? 'bg-muted-foreground' 
-                    : realtimeConnected 
-                      ? 'bg-green-500 animate-pulse' 
-                      : realtimeLoading
-                        ? 'bg-amber-500 animate-ping'
-                        : 'bg-red-500'
-                }`} />
-              </div>
-            </CardHeader>
-            
-            {realtimeService.isEnabled() && (
-              <CardContent>
-                <div className="space-y-3 max-h-64 overflow-y-auto">
-                  {realtimeData.length > 0 ? (
-                    realtimeData.map((item, index) => (
-                      <div key={index} className="flex items-start space-x-3 p-3 bg-secondary/30 rounded-lg border border-secondary">
-                        <div className="bg-primary/10 p-1.5 rounded-full mt-0.5">
-                          <Activity className="h-3 w-3 text-primary" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium">{item.action || 'Activity'}</p>
-                          {item.payload?.data && (
-                            <p className="text-xs text-muted-foreground">{item.payload.data}</p>
-                          )}
-                          <p className="text-xs text-muted-foreground mt-1">
-                            {new Date(item.timestamp).toLocaleTimeString()}
-                          </p>
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <div className="text-center py-8 text-muted-foreground">
-                      <Activity className="h-8 w-8 mx-auto mb-3 opacity-50" />
-                      <p className="text-sm">No realtime activity yet</p>
-                      <p className="text-xs mt-1">Send a message to see live updates</p>
-                    </div>
-                  )}
-                </div>
-              </CardContent>
-            )}
-            
-            {!realtimeService.isEnabled() && (
-              <CardContent>
-                <div className="text-center py-8 text-muted-foreground">
-                  <WifiOff className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                  <p className="text-sm font-medium mb-2">Realtime Not Configured</p>
-                  <p className="text-xs mb-4">To enable realtime features, add these to your .env file:</p>
-                  <div className="bg-secondary/50 rounded-lg p-4 text-left text-xs font-mono">
-                    <p>VITE_XANO_REALTIME_ENABLED=true</p>
-                    <p>VITE_XANO_REALTIME_HASH=your-connection-hash</p>
-                  </div>
-                </div>
-              </CardContent>
-            )}
-          </Card>
-        </div>
       </main>
 
       {/* Click outside to close menu */}
