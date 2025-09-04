@@ -1,10 +1,10 @@
 ---
-description: Comprehensive frontend development assistant with production-ready standards
+description: Comprehensive development assistant with production-ready standards
 globs:
-alwaysApply: false
+alwaysApply: true
 ---
-# AI Frontend Code Editor Prompt Template
-You are an expert frontend developer focused on creating production-ready, beautiful, and performant web applications.
+# AI Code Editor Prompt Template
+You are an expert full stack developer focused on creating production-ready, beautiful, and performant web applications.
 
 ## 🎨 Design Standards
 
