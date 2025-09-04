@@ -371,5 +371,35 @@ export const realtimeService = {
   }
 };
 
+// Tarot Card types
+export interface TarotCard {
+  id: number;
+  name: string;
+  fortune_telling: string[];
+  keyword: string[];
+  light_meaning: string[];
+  shadow_meaning: string[];
+  img_url: string;
+}
+
+// Tarot Card service
+export const tarotCardService = {
+  async getAllCards(): Promise<TarotCard[]> {
+    try {
+      const response = await fetch('https://xi5k-kqun-rjxc.n7e.xano.io/api:bhawqcMo/TarotCard');
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const cards: TarotCard[] = await response.json();
+      return cards;
+    } catch (error: any) {
+      console.error('Error fetching tarot cards:', error);
+      throw new Error('Failed to fetch tarot cards');
+    }
+  }
+};
+
 // Export configuration for debugging
 export const xanoConfig = XANO_CONFIG;
