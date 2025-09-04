@@ -6,11 +6,11 @@ import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { CardSection } from '@/components/CardSection';
 import { useAuth } from '@/contexts/AuthContext';
 import { realtimeService, authService } from '@/lib/xano';
-import { LogOut, WifiOff, User, Activity, Database, Menu, X } from 'lucide-react';
+import { LogOut, User, Activity, Database, Menu, X } from 'lucide-react';
 
 export const DashboardPage: React.FC = () => {
   const { user, logout, isLoading } = useAuth();
-  const [realtimeData, setRealtimeData] = useState<any[]>([]);
+  const [, setRealtimeData] = useState<any[]>([]);
   const [realtimeConnected, setRealtimeConnected] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [realtimeLoading, setRealtimeLoading] = useState(false);
@@ -167,19 +167,52 @@ export const DashboardPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-cosmic-blue-midnight via-cosmic-purple-deep to-cosmic-blue-deep relative overflow-hidden">
+      {/* Cosmic Background Effects */}
+      <div className="absolute inset-0 -z-10">
+        {/* Floating cosmic orbs */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-[5%] right-[10%] w-40 h-40 rounded-full bg-gradient-to-br from-cosmic-purple-glow/15 to-cosmic-gold-glow/10 blur-2xl animate-cosmic-float" />
+          <div className="absolute bottom-[15%] left-[5%] w-32 h-32 rounded-full bg-gradient-to-br from-cosmic-blue-light/15 to-cosmic-purple-light/10 blur-xl animate-cosmic-pulse" />
+          <div className="absolute top-[40%] right-[30%] w-24 h-24 rounded-full bg-gradient-to-br from-cosmic-gold-bright/10 to-cosmic-purple-medium/8 blur-lg animate-cosmic-float" style={{ animationDelay: '3s' }} />
+        </div>
+
+        {/* Subtle starfield */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(15)].map((_, i) => (
+            <span
+              key={i}
+              className="absolute rounded-full bg-cosmic-starlight-white/60 blur-[0.5px] animate-star-twinkle"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                width: `${Math.random() * 2 + 1}px`,
+                height: `${Math.random() * 2 + 1}px`,
+                animationDelay: `${Math.random() * 4}s`,
+                animationDuration: `${Math.random() * 3 + 2}s`,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Glass morphism overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-cosmic-starlight-white/3 via-cosmic-blue-midnight/10 to-cosmic-purple-deep/15 backdrop-blur-[0.5px]" />
+
       {/* Header */}
-      <header className="border-b backdrop-blur-sm bg-background/80 sticky top-0 z-50">
+      <header className="border-b border-cosmic-purple-glow/20 backdrop-blur-md bg-cosmic-blue-midnight/40 sticky top-0 z-50">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo/Brand */}
             <div className="flex items-center space-x-3">
-              <div className="bg-gradient-to-br from-primary to-primary/70 p-2 rounded-xl shadow-sm">
-                <Database className="h-5 w-5 text-primary-foreground" />
+              <div className="bg-gradient-to-br from-cosmic-purple-glow to-cosmic-gold-glow p-3 rounded-2xl shadow-lg animate-cosmic-glow">
+                <Database className="h-6 w-6 text-cosmic-starlight-white" />
               </div>
               <div>
-                <h1 className="text-xl font-semibold">Xano Boilerplate</h1>
-                <p className="text-xs text-muted-foreground">by Natt</p>
+                <h1 className="text-xl font-bold bg-gradient-to-r from-cosmic-starlight-white to-cosmic-gold-bright bg-clip-text text-transparent">
+                  Mystical Tarot
+                </h1>
+                <p className="text-xs text-cosmic-starlight-light/70">by Cosmic AI</p>
               </div>
             </div>
 
@@ -189,28 +222,28 @@ export const DashboardPage: React.FC = () => {
               <ThemeToggle />
               
               {/* Realtime Status */}
-              <div className="hidden md:flex items-center space-x-2 text-sm">
+              <div className="hidden md:flex items-center space-x-3 text-sm">
                 {realtimeService.isEnabled() ? (
                   realtimeConnected ? (
                     <>
-                      <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-                      <span className="text-green-600 dark:text-green-400 font-medium">Live</span>
+                      <div className="h-3 w-3 rounded-full bg-cosmic-gold-bright animate-pulse shadow-lg shadow-cosmic-gold-glow/50" />
+                      <span className="text-cosmic-gold-bright font-medium">Cosmic Live</span>
                     </>
                   ) : realtimeLoading ? (
                     <>
-                      <div className="h-2 w-2 rounded-full bg-amber-500 animate-ping" />
-                      <span className="text-amber-600 dark:text-amber-400 font-medium">Connecting</span>
+                      <div className="h-3 w-3 rounded-full bg-cosmic-purple-glow animate-ping shadow-lg shadow-cosmic-purple-glow/50" />
+                      <span className="text-cosmic-purple-glow font-medium">Connecting</span>
                     </>
                   ) : (
                     <>
-                      <div className="h-2 w-2 rounded-full bg-red-500" />
-                      <span className="text-red-600 dark:text-red-400 font-medium">Disconnected</span>
+                      <div className="h-3 w-3 rounded-full bg-red-400" />
+                      <span className="text-red-400 font-medium">Disconnected</span>
                     </>
                   )
                 ) : (
                   <>
-                    <div className="h-2 w-2 rounded-full bg-muted-foreground" />
-                    <span className="text-muted-foreground font-medium">Static</span>
+                    <div className="h-3 w-3 rounded-full bg-cosmic-starlight-light/50" />
+                    <span className="text-cosmic-starlight-light/70 font-medium">Static</span>
                   </>
                 )}
               </div>
@@ -221,23 +254,23 @@ export const DashboardPage: React.FC = () => {
                   variant="ghost"
                   size="sm"
                   onClick={() => setMenuOpen(!menuOpen)}
-                  className="h-9 w-9 p-0"
+                  className="h-10 w-10 p-0 border border-cosmic-purple-glow/20 bg-cosmic-blue-midnight/30 hover:bg-cosmic-purple-glow/20 text-cosmic-starlight-white"
                 >
-                  {menuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+                  {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                 </Button>
 
                 {/* Dropdown Menu */}
                 {menuOpen && (
-                  <div className="absolute right-0 top-12 w-64 bg-background border rounded-lg shadow-lg py-2 z-50">
+                  <div className="absolute right-0 top-14 w-72 bg-cosmic-blue-midnight/90 backdrop-blur-md border border-cosmic-purple-glow/30 rounded-2xl shadow-2xl shadow-cosmic-purple-glow/20 py-3 z-50">
                     {/* User Info */}
-                    <div className="px-4 py-3 border-b">
+                    <div className="px-6 py-4 border-b border-cosmic-purple-glow/20">
                       <div className="flex items-center space-x-3">
-                        <div className="bg-primary/10 p-2 rounded-full">
-                          <User className="h-4 w-4 text-primary" />
+                        <div className="bg-gradient-to-br from-cosmic-purple-glow/30 to-cosmic-gold-glow/20 p-3 rounded-full">
+                          <User className="h-5 w-5 text-cosmic-gold-bright" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="font-medium text-sm truncate">{user?.name || 'User'}</p>
-                          <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
+                          <p className="font-semibold text-sm truncate text-cosmic-starlight-white">{user?.name || 'User'}</p>
+                          <p className="text-xs text-cosmic-starlight-light/70 truncate">{user?.email}</p>
                         </div>
                       </div>
                     </div>
@@ -246,18 +279,18 @@ export const DashboardPage: React.FC = () => {
                     <div className="py-2">
                       {realtimeService.isEnabled() && realtimeConnected && (
                         <button
-                          className="w-full text-left px-4 py-2 text-sm hover:bg-secondary/50 flex items-center space-x-2"
+                          className="w-full text-left px-6 py-3 text-sm hover:bg-cosmic-purple-glow/20 flex items-center space-x-3 text-cosmic-starlight-light transition-colors duration-200"
                           onClick={() => {
                             toast('🧪 Test notification triggered!', { duration: 2000 });
                             setMenuOpen(false);
                           }}
                         >
-                          <Activity className="h-4 w-4" />
+                          <Activity className="h-4 w-4 text-cosmic-gold-bright" />
                           <span>Test Toast</span>
                         </button>
                       )}
                       <button
-                        className="w-full text-left px-4 py-2 text-sm hover:bg-secondary/50 flex items-center space-x-2 text-red-600 dark:text-red-400"
+                        className="w-full text-left px-6 py-3 text-sm hover:bg-red-500/20 flex items-center space-x-3 text-red-400 transition-colors duration-200"
                         onClick={() => {
                           handleLogout();
                           setMenuOpen(false);
@@ -276,10 +309,10 @@ export const DashboardPage: React.FC = () => {
       </header>
 
       {/* Main Content */}
-      <main className="min-h-[calc(100vh-80px)] flex items-center justify-center px-6 py-12">
+      <main className="min-h-[calc(100vh-80px)] flex items-center justify-center px-6 py-12 relative z-10">
 
         {/* Card Section */}
-        <div className="w-full">
+        <div className="w-full max-w-6xl">
           <CardSection />
         </div>
 

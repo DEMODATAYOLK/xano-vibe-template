@@ -126,6 +126,76 @@
     }
   }
 
+  /* Cosmic Mystical Animations */
+  .animate-cosmic-float {
+    animation: cosmicFloat 6s ease-in-out infinite;
+  }
+  
+  @keyframes cosmicFloat {
+    0%, 100% { 
+      transform: translateY(0px) rotate(0deg); 
+    }
+    50% { 
+      transform: translateY(-20px) rotate(5deg); 
+    }
+  }
+
+  .animate-cosmic-glow {
+    animation: cosmicGlow 3s ease-in-out infinite;
+  }
+  
+  @keyframes cosmicGlow {
+    0%, 100% { 
+      box-shadow: 0 0 20px rgba(156, 39, 176, 0.3); 
+    }
+    50% { 
+      box-shadow: 0 0 40px rgba(156, 39, 176, 0.6), 0 0 60px rgba(255, 193, 7, 0.3); 
+    }
+  }
+
+  .animate-star-twinkle {
+    animation: starTwinkle 2s ease-in-out infinite;
+  }
+  
+  @keyframes starTwinkle {
+    0%, 100% { 
+      opacity: 0.3; 
+      transform: scale(1); 
+    }
+    50% { 
+      opacity: 1; 
+      transform: scale(1.2); 
+    }
+  }
+
+  .animate-cosmic-pulse {
+    animation: cosmicPulse 4s ease-in-out infinite;
+  }
+  
+  @keyframes cosmicPulse {
+    0%, 100% { 
+      transform: scale(1); 
+      opacity: 0.8; 
+    }
+    50% { 
+      transform: scale(1.05); 
+      opacity: 1; 
+    }
+  }
+
+  /* Glass morphism effects */
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .cosmic-glass {
+    background: linear-gradient(135deg, rgba(45, 27, 105, 0.1), rgba(26, 35, 126, 0.1));
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(156, 39, 176, 0.2);
+  }
+
   /* Card Section Styles */
   .card-section {
     @apply w-full;
@@ -146,7 +216,7 @@
   }
 
   .card-container.flipped {
-    transform: scale(1.1);
+    transform: none;
   }
 
   .card-inner {

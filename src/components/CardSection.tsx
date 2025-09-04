@@ -50,19 +50,13 @@ export const CardSection: React.FC<CardSectionProps> = ({ className = '' }) => {
             
             {/* Back side of card */}
             <div className="card-back">
-              <Card className="h-full w-full cursor-pointer transition-all duration-300 hover:shadow-lg bg-gradient-to-br from-primary to-primary/80">
-                <CardContent className="flex items-center justify-center h-full p-4">
-                  <div className="text-center text-primary-foreground">
-                    <div className="text-2xl font-bold mb-2">
-                      {cardId + 1}
-                    </div>
-                    <div className="text-xs opacity-80">
-                      Backside
-                    </div>
-                    <div className="text-xs opacity-60 mt-1">
-                      Row {rowIndex + 1}
-                    </div>
-                  </div>
+              <Card className="h-full w-full cursor-pointer transition-all duration-300 hover:shadow-lg overflow-hidden">
+                <CardContent className="h-full p-0">
+                  <img 
+                    src="https://cdn.jsdelivr.net/gh/Nattothemoon/Tarot/m14.jpg" 
+                    alt={`Card ${cardId + 1} backside`}
+                    className="w-full h-full object-contain"
+                  />
                 </CardContent>
               </Card>
             </div>
