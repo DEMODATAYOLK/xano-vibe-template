@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Shuffle } from 'lucide-react';
 import { tarotCardService, TarotCard } from '@/lib/xano';
 
 interface CardSectionProps {
@@ -9,8 +11,28 @@ interface CardSectionProps {
 export const CardSection: React.FC<CardSectionProps> = ({ className = '' }) => {
   const [flippedCard, setFlippedCard] = useState<number | null>(null);
   const [tarotCards, setTarotCards] = useState<TarotCard[]>([]);
+  const [shuffledCards, setShuffledCards] = useState<TarotCard[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Shuffle function using Fisher-Yates algorithm
+  const shuffleCards = (cards: TarotCard[]): TarotCard[] => {
+    const shuffled = [...cards];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  // Handle shuffle button click
+  const handleShuffle = () => {
+    if (tarotCards.length > 0) {
+      const shuffled = shuffleCards(tarotCards);
+      setShuffledCards(shuffled);
+      setFlippedCard(null); // Reset any flipped cards
+    }
+  };
 
   // Fetch tarot cards on component mount
   useEffect(() => {
@@ -20,6 +42,9 @@ export const CardSection: React.FC<CardSectionProps> = ({ className = '' }) => {
         setError(null);
         const cards = await tarotCardService.getAllCards();
         setTarotCards(cards);
+        // Shuffle cards on initial load
+        const shuffled = shuffleCards(cards);
+        setShuffledCards(shuffled);
       } catch (err: any) {
         setError(err.message || 'Failed to load tarot cards');
         console.error('Error fetching tarot cards:', err);
@@ -47,8 +72,8 @@ export const CardSection: React.FC<CardSectionProps> = ({ className = '' }) => {
       const cardId = rowIndex * 20 + i;
       const isFlipped = flippedCard === cardId;
       
-      // Get the tarot card data for this position, or use a fallback
-      const tarotCard = tarotCards[cardId] || null;
+      // Get the tarot card data for this position from shuffled cards, or use a fallback
+      const tarotCard = shuffledCards[cardId] || null;
       
       cards.push(
         <div
@@ -128,9 +153,17 @@ export const CardSection: React.FC<CardSectionProps> = ({ className = '' }) => {
     <div className={`card-section ${className}`}>
       <div className="text-center mb-8">
         <h3 className="text-2xl font-bold mb-2">Interactive Card Collection</h3>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground mb-4">
           Click any card to flip it and see the tarot card. Only one card can be flipped at a time.
         </p>
+        <Button 
+          onClick={handleShuffle}
+          variant="outline"
+          className="inline-flex items-center gap-2 hover:bg-primary hover:text-primary-foreground transition-colors"
+        >
+          <Shuffle className="h-4 w-4" />
+          Shuffle Cards
+        </Button>
       </div>
       
       <div className="space-y-8">
