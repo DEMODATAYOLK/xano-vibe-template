@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { H2, P } from '@/components/ui/typography';
 import { useAuth } from '@/contexts/AuthContext';
 import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 
@@ -61,14 +62,18 @@ export const LoginPage: React.FC = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center">
-              {isLoginMode ? 'Welcome Back' : 'Create Account'}
+            <CardTitle asChild>
+              <H2 className="text-2xl font-bold text-center">
+                {isLoginMode ? 'Welcome Back' : 'Create Account'}
+              </H2>
             </CardTitle>
-            <CardDescription className="text-center">
-              {isLoginMode 
-                ? 'Sign in to your account to continue' 
-                : 'Sign up to get started with XanoApp'
-              }
+            <CardDescription asChild>
+              <P className="text-center">
+                {isLoginMode 
+                  ? 'Sign in to your account to continue' 
+                  : 'Sign up to get started with XanoApp'
+                }
+              </P>
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -130,9 +135,9 @@ export const LoginPage: React.FC = () => {
               </div>
 
               {error && (
-                <div className="text-destructive text-sm bg-destructive/10 p-3 rounded-md border border-destructive/20">
+                <P className="text-destructive text-sm bg-destructive/10 p-3 rounded-md border border-destructive/20">
                   {error}
-                </div>
+                </P>
               )}
 
               <Button 

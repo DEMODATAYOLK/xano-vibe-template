@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typography Component Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .scroll-m-20 { scroll-margin-top: 5rem; }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .text-5xl { font-size: 3rem; line-height: 1; }
+        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .font-extrabold { font-weight: 800; }
+        .font-semibold { font-weight: 600; }
+        .font-medium { font-weight: 500; }
+        .font-mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace; }
+        .tracking-tight { letter-spacing: -0.025em; }
+        .leading-7 { line-height: 1.75rem; }
+        .leading-none { line-height: 1; }
+        .border-b { border-bottom-width: 1px; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .px-\[0\.3rem\] { padding-left: 0.3rem; padding-right: 0.3rem; }
+        .py-\[0\.2rem\] { padding-top: 0.2rem; padding-bottom: 0.2rem; }
+        .p-4 { padding: 1rem; }
+        .pl-6 { padding-left: 1.5rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .my-6 { margin-top: 1.5rem; margin-bottom: 1.5rem; }
+        .ml-6 { margin-left: 1.5rem; }
+        .first\:mt-0:first-child { margin-top: 0; }
+        .\[&:not\(:first-child\)\]:mt-6:not(:first-child) { margin-top: 1.5rem; }
+        .\[&>li\]:mt-2 > li { margin-top: 0.5rem; }
+        .border-l-2 { border-left-width: 2px; }
+        .rounded-sm { border-radius: 0.125rem; }
+        .bg-muted { background-color: #f1f5f9; }
+        .text-muted-foreground { color: #64748b; }
+        .italic { font-style: italic; }
+        .list-disc { list-style-type: disc; }
+        .overflow-x-auto { overflow-x: auto; }
+        .relative { position: relative; }
+    </style>
+</head>
+<body class="p-8 bg-white">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <h1 class="text-2xl font-bold mb-6">Typography Component Test</h1>
+        
+        <section>
+            <h2 class="text-xl font-semibold mb-4">Headings</h2>
+            <div class="space-y-4">
+                <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+                    H1 - Main Heading
+                </h1>
+                <h2 class="scroll-m-20 border-b py-2 text-3xl font-semibold tracking-tight first:mt-0">
+                    H2 - Section Heading
+                </h2>
+                <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight">
+                    H3 - Subsection Heading
+                </h3>
+                <h4 class="scroll-m-20 text-xl font-semibold tracking-tight">
+                    H4 - Minor Heading
+                </h4>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4">Text Elements</h2>
+            <div class="space-y-4">
+                <p class="text-xl text-muted-foreground">
+                    Lead - This is a lead paragraph with larger text and muted color.
+                </p>
+                <p class="leading-7 [&:not(:first-child)]:mt-6">
+                    P - This is a regular paragraph with proper line height and spacing.
+                </p>
+                <div class="text-lg font-semibold">
+                    Large - This is large text with semibold weight.
+                </div>
+                <p class="text-sm font-medium leading-none">
+                    Small - This is small text with medium weight.
+                </p>
+                <span class="text-sm text-muted-foreground">
+                    Muted - This is muted text for secondary information.
+                </span>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4">Code Elements</h2>
+            <div class="space-y-4">
+                <p>
+                    Here's some <code class="relative rounded-sm bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">inline code</code> in a sentence.
+                </p>
+                <pre class="relative rounded-sm bg-muted p-4 font-mono text-sm font-semibold overflow-x-auto">
+// Multiline code block
+function example() {
+    return "Hello, World!";
+}
+                </pre>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4">Lists and Quotes</h2>
+            <div class="space-y-4">
+                <ul class="my-6 ml-6 list-disc [&>li]:mt-2">
+                    <li>First list item</li>
+                    <li>Second list item</li>
+                    <li>Third list item</li>
+                </ul>
+                <blockquote class="mt-6 border-l-2 pl-6 italic text-muted-foreground">
+                    This is a blockquote with left border and italic styling.
+                </blockquote>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-4">Usage Instructions</h2>
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <p class="text-sm text-gray-700">
+                    To use these typography components in your React project, import them from:
+                </p>
+                <code class="block mt-2 p-2 bg-gray-200 rounded text-sm">
+                    import { H1, H2, H3, H4, Lead, P, Large, Small, Muted, InlineCode, MultilineCode, List, Quote } from '@/components/ui/typography';
+                </code>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

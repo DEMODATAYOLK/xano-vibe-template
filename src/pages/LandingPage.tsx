@@ -1,10 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { H1, H2, H3, Lead, P } from '@/components/ui/typography';
 import { Sparkles, User, BookOpen, Languages } from 'lucide-react';
 
 export const LandingPage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleNavigateToDashboard = () => {
+    navigate('/dashboard');
+  };
+
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-cosmic-blue-midnight via-cosmic-purple-deep to-cosmic-blue-deep">
       {/* Enhanced Cosmic Background */}
@@ -82,15 +89,15 @@ export const LandingPage: React.FC = () => {
               <span className="text-sm font-medium">Mystical • AI Tarot</span>
             </div>
 
-            <h1 className="text-4xl md:text-[50px] font-bold leading-[1.08] tracking-tight">
+            <H1 className="text-4xl md:text-[50px] font-bold leading-[1.08] tracking-tight">
               <span className="block bg-gradient-to-r from-cosmic-purple-glow via-cosmic-gold-bright to-cosmic-starlight-white bg-clip-text text-transparent drop-shadow-lg animate-cosmic-pulse">
                 เปิดดวงชะตาด้วย AI ที่เข้าใจคุณ
               </span>
-            </h1>
+            </H1>
 
-            <p className="mt-8 text-lg md:text-xl text-cosmic-starlight-light/90 max-w-3xl mx-auto leading-relaxed font-light">
+            <Lead className="mt-8 text-lg md:text-xl text-cosmic-starlight-light/90 max-w-3xl mx-auto leading-relaxed font-light">
               รับคำทำนายจากไพ่ทาโรต์ที่แม่นยำ ผ่านปัญญาประดิษฐ์ขั้นสูง พร้อมคำแนะนำเพื่อชีวิตที่ดีกว่า
-            </p>
+            </Lead>
 
             <div className="mt-12 flex justify-center">
               <Button asChild size="lg" className="text-lg px-12 py-7 h-auto rounded-2xl shadow-2xl hover:shadow-cosmic-purple-glow/50 transition-all duration-500 bg-gradient-to-r from-cosmic-purple-medium via-cosmic-purple-glow to-cosmic-blue-medium hover:from-cosmic-purple-light hover:via-cosmic-purple-glow hover:to-cosmic-blue-light text-cosmic-starlight-white border border-cosmic-gold-glow/30 animate-cosmic-glow">
@@ -103,10 +110,10 @@ export const LandingPage: React.FC = () => {
 
           {/* Features Section */}
           <section className="mt-24 md:mt-32">
-            <h2 className="text-center text-3xl md:text-4xl font-bold bg-gradient-to-r from-cosmic-starlight-white via-cosmic-gold-bright to-cosmic-purple-glow bg-clip-text text-transparent mb-4">
+            <H2 className="text-center text-3xl md:text-4xl font-bold bg-gradient-to-r from-cosmic-starlight-white via-cosmic-gold-bright to-cosmic-purple-glow bg-clip-text text-transparent mb-4">
               ทำไมต้องเลือก Taro App?
-            </h2>
-            <p className="text-center text-cosmic-starlight-light/70 text-lg mb-12">พลังแห่งจักรวาลในมือคุณ</p>
+            </H2>
+            <P className="text-center text-cosmic-starlight-light/70 text-lg mb-12">พลังแห่งจักรวาลในมือคุณ</P>
 
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
               {/* Feature 1 */}
@@ -115,10 +122,10 @@ export const LandingPage: React.FC = () => {
                   <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-cosmic-purple-glow/30 to-cosmic-gold-glow/20 text-cosmic-gold-bright flex items-center justify-center mb-6 group-hover:animate-cosmic-glow">
                     <Sparkles className="h-8 w-8" />
                   </div>
-                  <h3 className="text-xl font-bold mb-4 text-cosmic-starlight-white">ปัญญาประดิษฐ์ขั้นสูง</h3>
-                  <p className="text-cosmic-starlight-light/80 leading-relaxed">
+                  <H3 className="text-xl font-bold mb-4 text-cosmic-starlight-white">ปัญญาประดิษฐ์ขั้นสูง</H3>
+                  <P className="text-cosmic-starlight-light/80 leading-relaxed">
                     ใช้เทคโนโลยี OpenAI ในการวิเคราะห์และให้คำทำนายที่แม่นยำ เข้าใจบริบทของชีวิตคุณ
-                  </p>
+                  </P>
                 </div>
               </div>
 
@@ -128,10 +135,10 @@ export const LandingPage: React.FC = () => {
                   <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-cosmic-blue-light/30 to-cosmic-purple-glow/20 text-cosmic-gold-bright flex items-center justify-center mb-6 group-hover:animate-cosmic-glow">
                     <User className="h-8 w-8" />
                   </div>
-                  <h3 className="text-xl font-bold mb-4 text-cosmic-starlight-white">คำทำนายเฉพาะตัว</h3>
-                  <p className="text-cosmic-starlight-light/80 leading-relaxed">
+                  <H3 className="text-xl font-bold mb-4 text-cosmic-starlight-white">คำทำนายเฉพาะตัว</H3>
+                  <P className="text-cosmic-starlight-light/80 leading-relaxed">
                     คำนึงถึงวันเกิดและข้อมูลส่วนตัว เพื่อให้คำทำนายที่ตรงกับดวงชะตาของคุณมากที่สุด
-                  </p>
+                  </P>
                 </div>
               </div>
 
@@ -141,10 +148,10 @@ export const LandingPage: React.FC = () => {
                   <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-cosmic-gold-glow/30 to-cosmic-purple-medium/20 text-cosmic-gold-bright flex items-center justify-center mb-6 group-hover:animate-cosmic-glow">
                     <BookOpen className="h-8 w-8" />
                   </div>
-                  <h3 className="text-xl font-bold mb-4 text-cosmic-starlight-white">เก็บประวัติการทำนาย</h3>
-                  <p className="text-cosmic-starlight-light/80 leading-relaxed">
+                  <H3 className="text-xl font-bold mb-4 text-cosmic-starlight-white">เก็บประวัติการทำนาย</H3>
+                  <P className="text-cosmic-starlight-light/80 leading-relaxed">
                     บันทึกและจัดการคำทำนายทั้งหมด เพิ่มโน้ตส่วนตัว และติดตามความแม่นยำ
-                  </p>
+                  </P>
                 </div>
               </div>
 
@@ -154,20 +161,37 @@ export const LandingPage: React.FC = () => {
                   <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-cosmic-purple-medium/30 to-cosmic-gold-bright/20 text-cosmic-gold-bright flex items-center justify-center mb-6 group-hover:animate-cosmic-glow">
                     <Languages className="h-8 w-8" />
                   </div>
-                  <h3 className="text-xl font-bold mb-4 text-cosmic-starlight-white">ภาษาไทยที่เข้าใจง่าย</h3>
-                  <p className="text-cosmic-starlight-light/80 leading-relaxed">
+                  <H3 className="text-xl font-bold mb-4 text-cosmic-starlight-white">ภาษาไทยที่เข้าใจง่าย</H3>
+                  <P className="text-cosmic-starlight-light/80 leading-relaxed">
                     คำทำนายเป็นภาษาไทยที่เข้าใจง่าย ครอบคลุมทุกด้านของชีวิต
-                  </p>
+                  </P>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Call to Action Section */}
+          <section className="mt-20 md:mt-28">
+            <div className="container px-5 py-24 mx-auto">
+              <div className="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto">
+                <H1 className="flex-grow sm:pr-16 text-2xl font-medium title-font text-cosmic-starlight-white">
+                  Slow-carb next level shoindxgoitch ethical authentic, scenester sriracha forage.
+                </H1>
+                <button 
+                  onClick={handleNavigateToDashboard}
+                  className="flex-shrink-0 text-cosmic-starlight-white bg-gradient-to-r from-cosmic-purple-medium via-cosmic-purple-glow to-cosmic-blue-medium hover:from-cosmic-purple-light hover:via-cosmic-purple-glow hover:to-cosmic-blue-light border-0 py-2 px-8 focus:outline-none rounded text-lg mt-10 sm:mt-0 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-cosmic-purple-glow/50 border border-cosmic-gold-glow/30 animate-cosmic-glow"
+                >
+                  Button
+                </button>
               </div>
             </div>
           </section>
 
           {/* Footer */}
           <footer className="mt-20 md:mt-28 text-center">
-            <p className="text-lg text-cosmic-starlight-light/60 font-light">
+            <P className="text-lg text-cosmic-starlight-light/60 font-light">
               Made with <span className="text-cosmic-gold-bright animate-star-twinkle">✨</span> for your cosmic journey
-            </p>
+            </P>
           </footer>
         </div>
       </div>

@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { CardSection } from '@/components/CardSection';
+import { H1, P, Small } from '@/components/ui/typography';
 import { useAuth } from '@/contexts/AuthContext';
 import { realtimeService, authService } from '@/lib/xano';
 import { LogOut, User, Activity, Database, Menu, X } from 'lucide-react';
 
 export const DashboardPage: React.FC = () => {
   const { user, logout, isLoading } = useAuth();
+  const navigate = useNavigate();
   const [, setRealtimeData] = useState<any[]>([]);
   const [realtimeConnected, setRealtimeConnected] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -204,15 +206,15 @@ export const DashboardPage: React.FC = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo/Brand */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
               <div className="bg-gradient-to-br from-cosmic-purple-glow to-cosmic-gold-glow p-3 rounded-2xl shadow-lg animate-cosmic-glow">
                 <Database className="h-6 w-6 text-cosmic-starlight-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-cosmic-starlight-white to-cosmic-gold-bright bg-clip-text text-transparent">
+                <H1 className="text-xl font-bold bg-gradient-to-r from-cosmic-starlight-white to-cosmic-gold-bright bg-clip-text text-transparent">
                   Mystical Tarot
-                </h1>
-                <p className="text-xs text-cosmic-starlight-light/70">by Cosmic AI</p>
+                </H1>
+                <Small className="text-xs text-cosmic-starlight-light/70">by Cosmic AI</Small>
               </div>
             </div>
 
@@ -269,8 +271,8 @@ export const DashboardPage: React.FC = () => {
                           <User className="h-5 w-5 text-cosmic-gold-bright" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="font-semibold text-sm truncate text-cosmic-starlight-white">{user?.name || 'User'}</p>
-                          <p className="text-xs text-cosmic-starlight-light/70 truncate">{user?.email}</p>
+                          <P className="font-semibold text-sm truncate text-cosmic-starlight-white">{user?.name || 'User'}</P>
+                          <Small className="text-xs text-cosmic-starlight-light/70 truncate">{user?.email}</Small>
                         </div>
                       </div>
                     </div>
